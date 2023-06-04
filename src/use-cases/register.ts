@@ -1,5 +1,6 @@
 import { StudentsRepository } from "@/repositories/student-respository"
 import { hash } from "bcryptjs"
+import { StudentAlreadyExistsError } from "./errors/student-already-exists-error"
 
 interface RegisterUseCaseRequest {
   name: string
@@ -27,7 +28,8 @@ export class RegisterUseCase {
     const studentWithSameEmail = await this.studentRepository.findByEmail(email)
 
     if (studentWithSameEmail) {
-      throw new Error("Email Already Exists")
+      console.log("Entrou")
+      throw new StudentAlreadyExistsError()
     }
 
     await this.studentRepository.create({
