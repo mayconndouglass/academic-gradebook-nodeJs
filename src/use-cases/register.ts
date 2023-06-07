@@ -1,11 +1,16 @@
 import { StudentsRepository } from "@/repositories/student-respository"
 import { hash } from "bcryptjs"
 import { StudentAlreadyExistsError } from "./errors/student-already-exists-error"
+import { Student } from "@prisma/client"
 
 interface RegisterUseCaseRequest {
   name: string
   email: string
   password: string
+}
+
+interface RegisterUseCaseResponse {
+  student: Student
 }
 
 export class RegisterUseCase {
@@ -21,21 +26,24 @@ export class RegisterUseCase {
     name,
     email,
     password,
-  }: RegisterUseCaseRequest) {
+  }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
 
     const password_hash = await hash(password, 6)
 
     const studentWithSameEmail = await this.studentRepository.findByEmail(email)
 
     if (studentWithSameEmail) {
-      console.log("Entrou")
       throw new StudentAlreadyExistsError()
     }
 
-    await this.studentRepository.create({
+    const student = await this.studentRepository.create({
       name,
       email,
       password_hash,
     })
+
+    return {
+      student,
+    }
   }
 }
