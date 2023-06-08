@@ -25,7 +25,7 @@ export const register = async (request: FastifyRequest, reply: FastifyReply) => 
   } catch (err) {
 
     if (err instanceof StudentAlreadyExistsError) {
-      return reply.status(409).send()
+      return reply.status(409).send({ message: err.message })
     }
 
     throw err
