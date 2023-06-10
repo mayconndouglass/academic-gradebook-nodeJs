@@ -10,8 +10,12 @@ interface GetStudentProfileUseCaseResponse {
   student: Student
 }
 
-export class GetUserProfileUseCase {
-  constructor(private studentsRepository: StudentsRepository) { }
+export class GetStudentProfileUseCase {
+  private studentsRepository
+
+  constructor(studentsRepository: StudentsRepository) {
+    this.studentsRepository = studentsRepository
+  }
 
   async execute({
     studentId
