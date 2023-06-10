@@ -20,4 +20,14 @@ export class PrismaStudentRepository implements StudentsRepository {
 
     return student
   }
+
+  async findById(id: string): Promise<Student | null> {
+    const student = await prisma.student.findUnique({
+      where: {
+        id,
+      }
+    })
+
+    return student
+  }
 }

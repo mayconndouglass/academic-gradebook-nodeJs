@@ -5,13 +5,13 @@ export class InMemoryStudentsRepository implements StudentsRepository {
   public items: Student[] = []
 
   async findById(id: string): Promise<Student | null> {
-    const user = this.items.find(item => item.id === id)
+    const student = this.items.find(item => item.id === id)
 
-    if (!user) {
+    if (!student) {
       return null
     }
 
-    return user
+    return student
   }
 
   async findByEmail(email: string): Promise<Student | null> {
