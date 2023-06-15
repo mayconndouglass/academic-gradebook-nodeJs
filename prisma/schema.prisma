@@ -16,5 +16,59 @@ model Student {
   email         String @unique
   password_hash String
 
+  Subjects Subject[]
+
   @@map("students")
+}
+
+model Subject {
+  id           String  @id @default(uuid())
+  name         String
+  teacher_name String?
+  hours        Decimal
+
+  student    Student @relation(fields: [student_id], references: [id])
+  student_id String
+
+  Grades          Grade[]
+  Absences        Absence[]
+  SubjectSchedule SubjectSchedule[]
+
+  @@map("subjects")
+}
+
+model Grade {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  subject    Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  @@map("grades")
+}
+
+model Absence {
+  id               String   @id @default(uuid())
+  number_abscences Decimal
+  max_abscences    Decimal?
+  description      String?
+  created_at       DateTime @default(now())
+
+  subject    Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  @@map("absences")
+}
+
+model SubjectSchedule {
+  id         String   @id @default(uuid())
+  days       String[]
+  start_time DateTime
+  end_time   DateTime
+
+  subject    Subject @relation(fields: [subject_id], references: [id])
+  subject_id String
+
+  @@map("subjects_schedule")
 }
