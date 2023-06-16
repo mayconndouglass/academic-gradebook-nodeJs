@@ -19,7 +19,9 @@ export class GetStudentProfileUseCase {
 
   async execute({
     studentId
-  }: GetStudentProfileUseCaseRequest): Promise<GetStudentProfileUseCaseResponse> {
+  }: GetStudentProfileUseCaseRequest):
+    Promise<GetStudentProfileUseCaseResponse> {
+
     const student = await this.studentsRepository.findById(studentId)
 
     if (!student) {
