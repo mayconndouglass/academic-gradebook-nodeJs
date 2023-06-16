@@ -5,6 +5,26 @@ import { randomUUID } from "crypto"
 export class InMemorySubjectRepository implements SubjectRepository {
   public items: Subject[] = []
 
+  async findById(id: string): Promise<Subject | null> {
+    const subject = this.items.find(item => item.id === id)
+
+    if (!subject) {
+      return null
+    }
+
+    return subject
+  }
+
+  async delete(id: string): Promise<void | null> {
+    const subject = this.items.findIndex(item => item.id === id)
+
+    if (subject === - 1) {
+      return null
+    }
+
+    this.items.splice(subject, 1)
+  }
+
   async updateName(id: string, name: string): Promise<Subject | null> {
     const subject = this.items.find(item => item.id === id)
 
