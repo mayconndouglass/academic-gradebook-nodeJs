@@ -25,7 +25,7 @@ model Subject {
   id           String  @id @default(uuid())
   name         String  @unique
   teacher_name String?
-  hours        Decimal
+  hours        Int
 
   student    Student @relation(fields: [student_id], references: [id])
   student_id String
