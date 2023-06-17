@@ -13,7 +13,7 @@ describe("Update subject name Use Case", () => {
     updateSubjectNameUseCase = new UpdateSubjectNameUseCase(subjectRepository)
   })
 
-  it("should be able to fetch subjetcs from a student", async () => {
+  it("should be able to edit subject name", async () => {
     const subject = await subjectRepository.create({
       id: "subject01",
       name: "nameInicial",
