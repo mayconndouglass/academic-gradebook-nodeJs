@@ -1,4 +1,4 @@
-import { GradesRepository } from "@/repositories/grade-repository"
+import { GradeRepository } from "@/repositories/grade-repository"
 import { Grade } from "@prisma/client"
 import { TheGradeLimiteHasBeenExceeded } from "./errors/the-grade-limit-has-been-exceeded-erro"
 
@@ -15,7 +15,7 @@ interface RegisterGradetUseCaseResponse {
 export class RegisterGradeUseCase {
   private gradeRepository
 
-  constructor(gradeRepository: GradesRepository) {
+  constructor(gradeRepository: GradeRepository) {
     this.gradeRepository = gradeRepository
   }
 
@@ -26,9 +26,9 @@ export class RegisterGradeUseCase {
   }: RegisterGradeUseCaseRequest)
     : Promise<RegisterGradetUseCaseResponse> {
 
-    const numberOfGrades = (await this.gradeRepository.findManyBySubject(subjectId)).length
+    const numberOfGrades = await this.gradeRepository.findManyBySubject(subjectId)
 
-    if (numberOfGrades === 10) {
+    if (numberOfGrades.length === 10) {
       throw new TheGradeLimiteHasBeenExceeded()
     }
 

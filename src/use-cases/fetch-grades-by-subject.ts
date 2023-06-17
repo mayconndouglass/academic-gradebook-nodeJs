@@ -1,4 +1,4 @@
-import { GradesRepository } from "@/repositories/grade-repository"
+import { GradeRepository } from "@/repositories/grade-repository"
 import { Grade } from "@prisma/client"
 
 interface FetchGradesBySubjectUseCaseRequest {
@@ -10,9 +10,9 @@ interface FetchGradesBySubjectUseCaseResponse {
 }
 
 export class FetchGradesBySubjectUseCase {
-  private gradeRepository: GradesRepository
+  private gradeRepository: GradeRepository
 
-  constructor(gradeRepository: GradesRepository) {
+  constructor(gradeRepository: GradeRepository) {
     this.gradeRepository = gradeRepository
   }
 

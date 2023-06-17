@@ -62,8 +62,8 @@ export class InMemorySubjectRepository implements SubjectRepository {
       student_id: data.student_id,
     }
 
-    this.items.push(subject)
+    this.items.push(subject as Subject)
 
-    return subject
+    return subject as Subject
   }
 }
