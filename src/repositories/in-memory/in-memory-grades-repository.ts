@@ -5,6 +5,26 @@ import { randomUUID } from "crypto"
 export class InMemoryGradesRepository implements GradeRepository {
   public items: Grade[] = []
 
+  async delete(id: string): Promise<void | null> {
+    const grade = this.items.findIndex(item => item.id === id)
+
+    if (grade === -1) {
+      return null
+    }
+
+    this.items.splice(grade, 1)
+  }
+
+  async findById(id: string): Promise<Grade | null> {
+    const grade = this.items.find(item => item.id === id)
+
+    if (!grade) {
+      return null
+    }
+
+    return grade
+  }
+
   async updateGrade(id: string, grade: number): Promise<Grade | null> {
     const gradee = this.items.find(grade => grade.id === id)
 
