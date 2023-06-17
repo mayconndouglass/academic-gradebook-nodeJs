@@ -39,7 +39,7 @@ model Subject {
 
 model Grade {
   id          String  @id @default(uuid())
-  name        String
+  grade       Float
   description String?
 
   subject    Subject @relation(fields: [subject_id], references: [id])

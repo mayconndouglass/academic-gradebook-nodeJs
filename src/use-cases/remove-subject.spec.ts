@@ -25,11 +25,9 @@ describe("Remove subject Use Case", () => {
       subjectId: subject.id,
     })
 
-    const teste = await subjectRepository.findById(subject.id)
-    console.log("---------------TESTE", subject)
-    console.log("---------------TESTE", teste)
+    const test = await subjectRepository.findById(subject.id)
 
-    expect(teste).toEqual(null)
+    expect(test).toEqual(null)
   })
 
   it("should return an error if the subject is not found", async () => {
