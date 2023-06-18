@@ -26,9 +26,9 @@ export class RegisterGradeUseCase {
   }: RegisterGradeUseCaseRequest)
     : Promise<RegisterGradetUseCaseResponse> {
 
-    const numberOfGrades = await this.gradeRepository.findManyBySubject(subjectId)
+    const numberOfGrades = (await this.gradeRepository.findManyBySubject(subjectId)).length
 
-    if (numberOfGrades.length === 10) {
+    if (numberOfGrades === 10) {
       throw new TheGradeLimiteHasBeenExceeded()
     }
 

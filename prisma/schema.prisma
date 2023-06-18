@@ -49,11 +49,11 @@ model Grade {
 }
 
 model Absence {
-  id               String   @id @default(uuid())
-  number_abscences Decimal
-  max_abscences    Decimal?
-  description      String?
-  created_at       DateTime @default(now())
+  id              String   @id @default(uuid())
+  number_absences Int
+  max_absences    Int
+  description     String?
+  created_at      DateTime @default(now())
 
   subject    Subject @relation(fields: [subject_id], references: [id])
   subject_id String
