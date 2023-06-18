@@ -50,8 +50,8 @@ model Grade {
 
 model Absence {
   id              String   @id @default(uuid())
-  number_absences Int
-  max_absences    Int
+  number_absences Int      @default(0)
+  max_absences    Int?
   description     String?
   created_at      DateTime @default(now())
 

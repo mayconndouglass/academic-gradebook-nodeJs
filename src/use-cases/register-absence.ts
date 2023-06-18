@@ -2,7 +2,6 @@ import { AbsenceRepository } from "@/repositories/absence-repository"
 import { Absence } from "@prisma/client"
 
 interface RegisterAbsenceUseCaseRequest {
-  id: string
   number_absences: number
   max_absences: number
   description?: string
@@ -21,7 +20,6 @@ export class RegisterAbsenceUseCase {
   }
 
   async execute({
-    id,
     number_absences,
     max_absences,
     description,
@@ -30,7 +28,6 @@ export class RegisterAbsenceUseCase {
     : Promise<RegisterAbsenceUseCaseResponse> {
 
     const absence = await this.absenceRepository.create({
-      id,
       number_absences,
       max_absences,
       description,
