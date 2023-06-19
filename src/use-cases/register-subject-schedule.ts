@@ -1,11 +1,16 @@
 import { SubjectScheduleRepository } from "@/repositories/subject-schedule-repository"
+import { SubjectSchedule } from "@prisma/client"
 
+//TODO: MTO provavelmenet esse use case está errado
 interface RegisterSubjectScheduleUseCaseRequest {
-  id: string
   days: string[]
   start_time: string
   end_time: string
   subject_id: string
+}
+
+interface RegisterSubjectScheduleUseCaseResponse {
+  subjectSchedule: SubjectSchedule
 }
 
 export class RegisterSubjectScheduleUseCase {
@@ -18,15 +23,14 @@ export class RegisterSubjectScheduleUseCase {
   }
 
   async execute({
-    id,
     days,
     start_time,
     end_time,
     subject_id,
-  }: RegisterSubjectScheduleUseCaseRequest) {
+  }: RegisterSubjectScheduleUseCaseRequest)
+    : Promise<RegisterSubjectScheduleUseCaseResponse> {
 
-    const subjectSchedule = this.subjectScheduleRepository.create({
-      id,
+    const subjectSchedule = await this.subjectScheduleRepository.create({
       days,
       start_time,
       end_time,

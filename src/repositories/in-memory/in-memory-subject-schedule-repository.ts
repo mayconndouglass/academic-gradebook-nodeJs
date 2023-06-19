@@ -5,7 +5,7 @@ import { randomUUID } from "crypto"
 export class InMemorySubjectSchedule implements SubjectScheduleRepository {
   public items: SubjectSchedule[] = []
 
-  async create(data: SubjectSchedule): Promise<SubjectSchedule> {
+  async create(data: Omit<SubjectSchedule, "id">): Promise<SubjectSchedule> {
     const subjectSchedule: SubjectSchedule = {
       id: randomUUID(),
       days: data.days,

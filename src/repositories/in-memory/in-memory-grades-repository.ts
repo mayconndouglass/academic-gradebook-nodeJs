@@ -41,7 +41,7 @@ export class InMemoryGradesRepository implements GradeRepository {
     const gradee: Grade = {
       id: data.id ?? randomUUID(),
       grade: data.grade,
-      description: data.description,
+      description: data.description as string | null,
       subject_id: data.subject_id
     }
 
