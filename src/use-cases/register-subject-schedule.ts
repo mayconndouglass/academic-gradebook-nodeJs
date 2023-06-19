@@ -1,7 +1,6 @@
 import { SubjectScheduleRepository } from "@/repositories/subject-schedule-repository"
 import { SubjectSchedule } from "@prisma/client"
 
-//TODO: MTO provavelmenet esse use case está errado
 interface RegisterSubjectScheduleUseCaseRequest {
   days: string[]
   start_time: string
