@@ -64,8 +64,8 @@ model Absence {
 model SubjectSchedule {
   id         String   @id @default(uuid())
   days       String[]
-  start_time DateTime
-  end_time   DateTime
+  start_time String
+  end_time   String
 
   subject    Subject @relation(fields: [subject_id], references: [id])
   subject_id String
