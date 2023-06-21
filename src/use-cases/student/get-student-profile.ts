@@ -1,6 +1,6 @@
-import { StudentsRepository } from "../repositories/student-respository"
+import { StudentsRepository } from "../../repositories/student-respository"
 import { Student } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 interface GetStudentProfileUseCaseRequest {
   studentId: string

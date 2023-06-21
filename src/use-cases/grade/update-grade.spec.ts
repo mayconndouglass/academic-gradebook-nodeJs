@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from "vitest"
 
 import { UpdateGradeUseCase } from "./update-grade"
 import { InMemoryGradesRepository } from "@/repositories/in-memory/in-memory-grades-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 describe("Update subject name Use Case", () => {
   let gradeRepository: InMemoryGradesRepository

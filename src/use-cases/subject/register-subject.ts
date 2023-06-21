@@ -1,6 +1,6 @@
 import { SubjectRepository } from "@/repositories/subject-repository"
 import { Subject } from "@prisma/client"
-import { SubjectAlreadyExistsError } from "./errors/subject-already-exists-error"
+import { SubjectAlreadyExistsError } from "../errors/subject-already-exists-error"
 
 interface RegisterSubjectUseCaseRequest {
   name: string

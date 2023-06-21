@@ -1,9 +1,9 @@
 import { expect, describe, it, beforeEach } from "vitest"
 import { hash } from "bcryptjs"
 
-import { InMemoryStudentsRepository } from "../repositories/in-memory/in-memory-students-repository"
+import { InMemoryStudentsRepository } from "../../repositories/in-memory/in-memory-students-repository"
 import { GetStudentProfileUseCase } from "./get-student-profile"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 describe("Get Profile Use Case", () => {
   let studentsRepository: InMemoryStudentsRepository

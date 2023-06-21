@@ -1,6 +1,6 @@
 import { SubjectRepository } from "@/repositories/subject-repository"
 import { Subject } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 interface UpdateSubjectNameUseCaseRequest {
   subjectId: string

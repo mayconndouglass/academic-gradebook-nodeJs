@@ -1,5 +1,5 @@
 import { SubjectRepository } from "@/repositories/subject-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 interface RemoveSubjectUseCaseRequest {
   subjectId: string

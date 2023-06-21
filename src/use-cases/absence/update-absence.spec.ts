@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from "vitest"
 
 import { UpdateAbsenceUseCase } from "./update-absence"
 import { InMemoryAbsenceRepository } from "@/repositories/in-memory/in-memory-absence-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 describe("Update absence Use Case", () => {
   let absenceRepository: InMemoryAbsenceRepository

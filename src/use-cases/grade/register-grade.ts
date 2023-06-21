@@ -1,6 +1,6 @@
 import { GradeRepository } from "@/repositories/grade-repository"
 import { Grade } from "@prisma/client"
-import { TheGradeLimiteHasBeenExceeded } from "./errors/the-grade-limit-has-been-exceeded-erro"
+import { TheGradeLimiteHasBeenExceeded } from "../errors/the-grade-limit-has-been-exceeded-erro"
 
 interface RegisterGradeUseCaseRequest {
   grade: number

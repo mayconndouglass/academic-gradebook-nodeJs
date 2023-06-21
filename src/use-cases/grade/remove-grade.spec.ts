@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from "vitest"
 
 import { RemoveGradeUseCase } from "./remove-grade"
 import { InMemoryGradesRepository } from "@/repositories/in-memory/in-memory-grades-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 describe("Remove Grade Use Case", () => {
   let gradeRepository: InMemoryGradesRepository

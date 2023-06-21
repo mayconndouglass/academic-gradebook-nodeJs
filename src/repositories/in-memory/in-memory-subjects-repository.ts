@@ -5,6 +5,12 @@ import { randomUUID } from "crypto"
 export class InMemorySubjectRepository implements SubjectRepository {
   public items: Subject[] = []
 
+  async findManySubjectsWithSubjectScheduleByStudent(studentId: string)
+    : Promise<Subject[]> {
+    console.log(studentId)
+    throw new Error("Method not implemented.")
+  }
+
   async findById(id: string): Promise<Subject | null> {
     const subject = this.items.find(item => item.id === id)
 

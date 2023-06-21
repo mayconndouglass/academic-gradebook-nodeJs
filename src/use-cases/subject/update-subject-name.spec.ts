@@ -1,38 +1,40 @@
 import { expect, describe, it, beforeEach } from "vitest"
 
-import { RemoveSubjectUseCase } from "./remove-subject"
+import { UpdateSubjectNameUseCase } from "./update-subject-name"
 import { InMemorySubjectRepository } from "@/repositories/in-memory/in-memory-subjects-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
-describe("Remove subject Use Case", () => {
+describe("Update subject name Use Case", () => {
   let subjectRepository: InMemorySubjectRepository
-  let removeSubjectUseCase: RemoveSubjectUseCase
+  let updateSubjectNameUseCase: UpdateSubjectNameUseCase
 
   beforeEach(() => {
     subjectRepository = new InMemorySubjectRepository()
-    removeSubjectUseCase = new RemoveSubjectUseCase(subjectRepository)
+    updateSubjectNameUseCase = new UpdateSubjectNameUseCase(subjectRepository)
   })
 
-  it("should delete a subject", async () => {
+  it("should be able to edit subject name", async () => {
     const subject = await subjectRepository.create({
       id: "subject01",
-      name: "name",
+      name: "nameInicial",
       hours: 10,
       student_id: "studentTeste",
     })
 
-    await removeSubjectUseCase.execute({
+    updateSubjectNameUseCase.execute({
       subjectId: subject.id,
+      name: "newName",
     })
 
-    const test = await subjectRepository.findById(subject.id)
-
-    expect(test).toEqual(null)
+    expect(subject).toEqual(
+      expect.objectContaining({ name: "newName" })
+    )
   })
 
   it("should return an error if the subject is not found", async () => {
-    await expect(() => removeSubjectUseCase.execute({
+    await expect(() => updateSubjectNameUseCase.execute({
       subjectId: "non-existent subject",
+      name: "newName",
     })).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })

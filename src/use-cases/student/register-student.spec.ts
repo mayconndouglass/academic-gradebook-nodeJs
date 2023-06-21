@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "vitest"
-import { RegisterUseCase } from "./register"
+import { RegisterUseCase } from "./register-student"
 import { compare } from "bcryptjs"
 import { InMemoryStudentsRepository } from "@/repositories/in-memory/in-memory-students-repository"
-import { StudentAlreadyExistsError } from "./errors/student-already-exists-error"
+import { StudentAlreadyExistsError } from "../errors/student-already-exists-error"
 
 describe("Register Use Case", () => {
   let usersRepository: InMemoryStudentsRepository

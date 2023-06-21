@@ -2,25 +2,27 @@ import { expect, describe, it, beforeEach } from "vitest"
 
 import { RegisterSubjectUseCase } from "./register-subject"
 import { InMemorySubjectRepository } from "@/repositories/in-memory/in-memory-subjects-repository"
-import { RegisterGradeUseCase } from "./register-grade"
+import { RegisterGradeUseCase } from "../grade/register-grade"
 import { GradeRepository } from "@/repositories/grade-repository"
 import { InMemoryGradesRepository } from "@/repositories/in-memory/in-memory-grades-repository"
-import { TheGradeLimiteHasBeenExceeded } from "./errors/the-grade-limit-has-been-exceeded-erro"
+import { FetchGradesBySubjectUseCase } from "./fetch-grades-by-subject"
 
-describe("Register Grade Use Case", () => {
+describe("Fetch Grades by Subjects Use Case", () => {
   let subjectRepository: InMemorySubjectRepository
   let gradeRepository: GradeRepository
   let registerSubjectUseCase: RegisterSubjectUseCase
   let registerGradeUseCase: RegisterGradeUseCase
+  let fetchGradesBySubjectUseCase: FetchGradesBySubjectUseCase
 
   beforeEach(() => {
     subjectRepository = new InMemorySubjectRepository()
     gradeRepository = new InMemoryGradesRepository()
     registerSubjectUseCase = new RegisterSubjectUseCase(subjectRepository)
     registerGradeUseCase = new RegisterGradeUseCase(gradeRepository)
+    fetchGradesBySubjectUseCase = new FetchGradesBySubjectUseCase(gradeRepository)
   })
 
-  it("should be able to register a new grade", async () => {
+  it("should be able to fetch grades from a subject", async () => {
     const { subject } = await registerSubjectUseCase.execute({
       name: "Filosofia",
       teacher_name: "Fiódor Dostoiévski ",
@@ -28,34 +30,26 @@ describe("Register Grade Use Case", () => {
       student_id: "123456",
     })
 
-    const { grade } = await registerGradeUseCase.execute({
+    await registerGradeUseCase.execute({
       grade: 10,
-      description: "notão",
+      description: "nota01",
       subjectId: subject.id,
     })
 
-    expect(grade.id).toEqual(expect.any(String))
-  })
-
-  it("should not be able to register more than 10 grades", async () => {
-    const { subject } = await registerSubjectUseCase.execute({
-      name: "Defesa contra as artes das trevas",
-      teacher_name: "Severo Snape",
-      hours: 200,
-      student_id: "123456",
+    await registerGradeUseCase.execute({
+      grade: 10,
+      description: "nota02",
+      subjectId: subject.id,
     })
 
-    for (let i = 0; i <= 9; i++) {
-      await registerGradeUseCase.execute({
-        grade: 10,
-        description: "notão",
-        subjectId: subject.id,
-      })
-    }
+    const { grades } = await fetchGradesBySubjectUseCase.execute({ subjectId: subject.id })
 
-    await expect(() => registerGradeUseCase.execute({
-      grade: 0,
-      subjectId: subject.id,
-    })).rejects.toBeInstanceOf(TheGradeLimiteHasBeenExceeded)
+    expect(grades).toHaveLength(2)
+    expect(grades).toEqual([
+      expect.objectContaining({ description: "nota01" }),
+      expect.objectContaining({ description: "nota02" }),
+    ])
   })
 })
+
+

@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from "vitest"
 import { RegisterSubjectUseCase } from "./register-subject"
 import { InMemorySubjectRepository } from "@/repositories/in-memory/in-memory-subjects-repository"
-import { SubjectAlreadyExistsError } from "./errors/subject-already-exists-error"
+import { SubjectAlreadyExistsError } from "../errors/subject-already-exists-error"
 
 describe("Register Subject Use Case", () => {
   let subjectRepository: InMemorySubjectRepository

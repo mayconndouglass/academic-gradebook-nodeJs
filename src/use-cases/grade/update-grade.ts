@@ -1,5 +1,5 @@
 import { GradeRepository } from "@/repositories/grade-repository"
-import { ResourceNotFoundError } from "./errors/resource-not-fount-error"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 import { Grade } from "@prisma/client"
 
 interface UpdateGradeUseCaseRequest {
