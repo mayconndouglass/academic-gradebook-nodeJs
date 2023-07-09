@@ -1,4 +1,4 @@
-import { AbsenceRepository } from "@/repositories/absence-repository"
+import { AbsenceRepository } from "@/repositories/interfaces/absence-repository"
 import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 import { Absence } from "@prisma/client"
 

@@ -1,4 +1,4 @@
-import { AbsenceRepository } from "@/repositories/absence-repository"
+import { AbsenceRepository } from "@/repositories/interfaces/absence-repository"
 import { Absence } from "@prisma/client"
 
 interface RegisterAbsenceUseCaseRequest {

@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma"
 import { Prisma, Student } from "@prisma/client"
-import { StudentsRepository } from "../student-respository"
+import { StudentsRepository } from "../interfaces/student-respository"
 
 export class PrismaStudentRepository implements StudentsRepository {
   async create(data: Prisma.StudentCreateInput) {

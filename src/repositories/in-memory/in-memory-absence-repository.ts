@@ -1,5 +1,5 @@
 import { Prisma, Absence } from "@prisma/client"
-import { AbsenceRepository } from "../absence-repository"
+import { AbsenceRepository } from "../interfaces/absence-repository"
 import { randomUUID } from "crypto"
 
 export class InMemoryAbsenceRepository implements AbsenceRepository {
