@@ -74,6 +74,4 @@ export class PrismaSubjectsRepository implements SubjectRepository {
 
     return subjects
   }
-
-
 }
