@@ -52,4 +52,3 @@ export class PrismaGradesRepository implements GradeRepository {
     return grade
   }
 }
-
