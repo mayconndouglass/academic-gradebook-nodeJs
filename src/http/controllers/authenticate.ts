@@ -17,10 +17,18 @@ export const authenticate = async (request: FastifyRequest, reply: FastifyReply)
     const studentsRepository = new PrismaStudentRepository()
     const authenticateUseCase = new AuthenticateUseCase(studentsRepository)
 
-    await authenticateUseCase.execute({
+    const { student } = await authenticateUseCase.execute({
       email,
       password,
     })
+
+    const token = await reply.jwtSign({}, {
+      sign: {
+        sub: student.id
+      }
+    })
+
+    return reply.status(200).send({ token })
   } catch (err) {
 
     if (err instanceof InvalidCredentialsError) {
@@ -29,6 +37,4 @@ export const authenticate = async (request: FastifyRequest, reply: FastifyReply)
 
     throw err
   }
-
-  return reply.status(200).send()
 }

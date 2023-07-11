@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs"
 
-import { StudentsRepository } from "@/repositories/student-respository"
+import { StudentsRepository } from "@/repositories/interfaces/student-respository"
 import { StudentAlreadyExistsError } from "../errors/student-already-exists-error"
 import { Student } from "@prisma/client"
 
