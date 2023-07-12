@@ -4,7 +4,7 @@ import { RegisterUseCase } from "@/use-cases/student/register-student"
 import { PrismaStudentRepository } from "../../../repositories/prisma/prisma-students-repository"
 import { StudentAlreadyExistsError } from "@/use-cases/errors/student-already-exists-error"
 
-export const register = async (request: FastifyRequest, reply: FastifyReply) => {
+export const registerStudent = async (request: FastifyRequest, reply: FastifyReply) => {
   const registerBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),

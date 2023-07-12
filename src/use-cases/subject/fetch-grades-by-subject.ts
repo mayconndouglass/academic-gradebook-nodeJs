@@ -1,4 +1,4 @@
-import { GradeRepository } from "@/repositories/grade-repository"
+import { GradeRepository } from "@/repositories/interfaces/grade-repository"
 import { Grade } from "@prisma/client"
 
 interface FetchGradesBySubjectUseCaseRequest {

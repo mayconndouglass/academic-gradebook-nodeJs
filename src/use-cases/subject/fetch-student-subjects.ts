@@ -1,4 +1,4 @@
-import { SubjectRepository } from "@/repositories/subject-repository"
+import { SubjectRepository } from "@/repositories/interfaces/subject-repository"
 import { Subject } from "@prisma/client"
 
 interface FetchStudantSubjectsUseCaseRequest {

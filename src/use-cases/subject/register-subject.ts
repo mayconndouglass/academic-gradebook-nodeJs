@@ -1,10 +1,10 @@
-import { SubjectRepository } from "@/repositories/subject-repository"
+import { SubjectRepository } from "@/repositories/interfaces/subject-repository"
 import { Subject } from "@prisma/client"
 import { SubjectAlreadyExistsError } from "../errors/subject-already-exists-error"
 
 interface RegisterSubjectUseCaseRequest {
   name: string
-  teacher_name: string | null
+  teacher_name?: string | undefined
   hours: number
   student_id: string
 }
@@ -28,7 +28,7 @@ export class RegisterSubjectUseCase {
   }: RegisterSubjectUseCaseRequest): Promise<RegisterSubjectUseCaseResponse> {
     //TODO: Será que deveria verificar se o student existe ?
 
-    const subjectWithSameName = await this.subjectRepository.findByName(name)
+    const subjectWithSameName = await this.subjectRepository.findByName(student_id, name)
 
     if (subjectWithSameName) {
       throw new SubjectAlreadyExistsError()

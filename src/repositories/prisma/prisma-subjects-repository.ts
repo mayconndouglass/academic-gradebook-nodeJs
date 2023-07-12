@@ -3,19 +3,21 @@ import { SubjectRepository } from "../interfaces/subject-repository"
 import { prisma } from "@/lib/prisma"
 
 export class PrismaSubjectsRepository implements SubjectRepository {
-  async create(data: Prisma.SubjectUncheckedCreateInput): Promise<Subject> {
-    const subject = await prisma.subject.create({
-      data
+  findByName(studentId: string, name: string): Promise<Subject | null> {
+    //TODO: Bom testar isso aqui
+    const subject = prisma.subject.findFirst({
+      where: {
+        student_id: studentId,
+        name: name
+      }
     })
 
     return subject
   }
 
-  async findByName(name: string): Promise<Subject | null> {
-    const subject = await prisma.subject.findUnique({
-      where: {
-        name,
-      }
+  async create(data: Prisma.SubjectUncheckedCreateInput): Promise<Subject> {
+    const subject = await prisma.subject.create({
+      data
     })
 
     return subject
