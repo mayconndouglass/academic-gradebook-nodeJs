@@ -15,6 +15,7 @@ export class RemoveSubjectUseCase {
   async execute({
     subjectId
   }: RemoveSubjectUseCaseRequest) {
+    //TODO: Implementar isso no updateSubject
     const subject = await this.subjectRepository.findById(subjectId)
 
     if (!subject) {
