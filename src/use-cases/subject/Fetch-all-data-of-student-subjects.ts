@@ -18,10 +18,9 @@ export class FetchAllDataOfStudentSubjectsUseCase {
     this.subjectRepository = subjectRepository
   }
 
-  async execute({
-    studentId
-  }: FetchAllDataOfStudentSubjectsUseCaseRequest)
+  async execute({ studentId }: FetchAllDataOfStudentSubjectsUseCaseRequest)
     : Promise<FetchAllDataOfStudentSubjectsUseCaseResponse> {
+
     const subjects = await this.subjectRepository.
       findManySubjectsWithSubjectScheduleByStudent(studentId)
 

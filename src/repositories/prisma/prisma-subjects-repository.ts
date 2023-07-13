@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma"
 
 export class PrismaSubjectsRepository implements SubjectRepository {
   findByName(studentId: string, name: string): Promise<Subject | null> {
-    //TODO: Bom testar isso aqui
     const subject = prisma.subject.findFirst({
       where: {
         student_id: studentId,
@@ -43,7 +42,7 @@ export class PrismaSubjectsRepository implements SubjectRepository {
     return subject
   }
 
-  async updateName(id: string, name: string): Promise<Subject | null> {
+  async updateName(id: string, name: string): Promise<Subject> {
     const subject = await prisma.subject.update({
       where: {
         id
