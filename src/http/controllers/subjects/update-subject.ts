@@ -20,6 +20,10 @@ export const updateSubject = async (request: FastifyRequest, reply: FastifyReply
 
     return reply.status(200).send(subject)
   } catch (err) {
-    throw new ResourceNotFoundError()
+    if (err instanceof ResourceNotFoundError) {
+      return reply.status(404).send({ message: err.message })
+    }
+
+    throw err
   }
 }

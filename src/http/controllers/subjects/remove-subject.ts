@@ -15,9 +15,8 @@ export const removeSubject = async (request: FastifyRequest, reply: FastifyReply
     const prismaSubjectRepository = new PrismaSubjectsRepository()
     const removeSubject = new RemoveSubjectUseCase(prismaSubjectRepository)
 
-    const subject = removeSubject.execute(data)
+    await removeSubject.execute(data)
 
-    return reply.status(204).send(subject)
   } catch (err) {
     if (err instanceof ResourceNotFoundError) {
       return reply.status(404).send({ message: err.message })
@@ -25,4 +24,6 @@ export const removeSubject = async (request: FastifyRequest, reply: FastifyReply
 
     throw err
   }
+
+  return reply.status(204).send()
 } 

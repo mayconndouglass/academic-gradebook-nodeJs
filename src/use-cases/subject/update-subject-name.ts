@@ -1,5 +1,6 @@
 import { SubjectRepository } from "@/repositories/interfaces/subject-repository"
 import { Subject } from "@prisma/client"
+import { ResourceNotFoundError } from "../errors/resource-not-fount-error"
 
 interface UpdateSubjectNameUseCaseRequest {
   id: string
@@ -22,8 +23,13 @@ export class UpdateSubjectNameUseCase {
     name,
   }: UpdateSubjectNameUseCaseRequest):
     Promise<UpdateSubjectNameUseCaseResponse> {
+    const subject = await this.subjectRepository.findById(id)
 
-    const subject = await this.subjectRepository.updateName(id, name)
+    if (!subject) {
+      throw new ResourceNotFoundError()
+    }
+
+    await this.subjectRepository.updateName(id, name)
 
     return {
       subject

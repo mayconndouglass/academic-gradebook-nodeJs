@@ -38,7 +38,6 @@ export class PrismaSubjectsRepository implements SubjectRepository {
         id
       }
     })
-
     return subject
   }
 
