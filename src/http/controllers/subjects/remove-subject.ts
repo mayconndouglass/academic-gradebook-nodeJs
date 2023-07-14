@@ -5,11 +5,11 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 
 export const removeSubject = async (request: FastifyRequest, reply: FastifyReply) => {
-  const updateBodySchema = z.object({
+  const removeBodySchema = z.object({
     subjectId: z.string(),
   })
 
-  const data = updateBodySchema.parse(request.body)
+  const data = removeBodySchema.parse(request.body)
 
   try {
     const prismaSubjectRepository = new PrismaSubjectsRepository()

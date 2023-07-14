@@ -4,7 +4,7 @@ import { PrismaGradesRepository } from "@/repositories/prisma/prisma-grades-repo
 import { RegisterGradeUseCase } from "@/use-cases/grade/register-grade"
 import { TheGradeLimiteHasBeenExceeded } from "@/use-cases/errors/the-grade-limit-has-been-exceeded-erro"
 
-export const RegisterGrade = async (request: FastifyRequest, reply: FastifyReply) => {
+export const registerGrade = async (request: FastifyRequest, reply: FastifyReply) => {
   const registerBodySchema = z.object({
     grade: z.number(),
     description: z.string().optional(),
