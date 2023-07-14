@@ -14,7 +14,7 @@ export class PrismaGradesRepository implements GradeRepository {
   async findManyBySubject(subjectId: string): Promise<Grade[]> {
     const grades = await prisma.grade.findMany({
       where: {
-        id: subjectId
+        subject_id: subjectId
       }
     })
 
