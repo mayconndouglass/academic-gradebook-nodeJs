@@ -13,6 +13,7 @@ export const registerAbsence = async (request: FastifyRequest, reply: FastifyRep
   })
 
   const data = registerBodySchema.parse(request.body)
+
   try {
     const absenceRepository = new PrismaAbsencesRepository()
     const registerAbsence = new RegisterAbsenceUseCase(absenceRepository)

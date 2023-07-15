@@ -4,7 +4,7 @@ import { Absence } from "@prisma/client"
 
 interface UpdateAbsenceRepository {
   absenceId: string
-  number_absence: number
+  numberAbsence: number
 }
 
 interface UpdateAbsenceResponse {
@@ -20,10 +20,10 @@ export class UpdateAbsenceUseCase {
 
   async execute({
     absenceId,
-    number_absence
+    numberAbsence
   }: UpdateAbsenceRepository)
     : Promise<UpdateAbsenceResponse> {
-    const absence = await this.absenceRepository.update(absenceId, number_absence)
+    const absence = await this.absenceRepository.update(absenceId, numberAbsence)
 
     if (!absence) {
       throw new ResourceNotFoundError()
