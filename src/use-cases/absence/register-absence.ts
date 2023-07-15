@@ -1,9 +1,10 @@
 import { AbsenceRepository } from "@/repositories/interfaces/absence-repository"
 import { Absence } from "@prisma/client"
+import { RegisterAbsenceAlreadyExistsError } from "../errors/register-absence-already-exists-error"
 
 interface RegisterAbsenceUseCaseRequest {
   number_absences: number
-  max_absences: number
+  max_absences?: number
   description?: string
   subject_id: string
 }
@@ -26,6 +27,13 @@ export class RegisterAbsenceUseCase {
     subject_id
   }: RegisterAbsenceUseCaseRequest)
     : Promise<RegisterAbsenceUseCaseResponse> {
+
+    const absenceAlreadyExist = await this.
+      absenceRepository.findAbsenceByStudentId(subject_id)
+
+    if (absenceAlreadyExist) {
+      throw new RegisterAbsenceAlreadyExistsError()
+    }
 
     const absence = await this.absenceRepository.create({
       number_absences,

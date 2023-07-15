@@ -3,6 +3,16 @@ import { AbsenceRepository } from "../interfaces/absence-repository"
 import { prisma } from "@/lib/prisma"
 
 export class PrismaAbsencesRepository implements AbsenceRepository {
+  async findAbsenceByStudentId(subjectId: string): Promise<Absence | null> {
+    const absence = await prisma.absence.findFirst({
+      where: {
+        subject_id: subjectId
+      }
+    })
+
+    return absence
+  }
+
   async create(data: Prisma.AbsenceUncheckedCreateInput): Promise<Absence> {
     const absence = await prisma.absence.create({
       data
