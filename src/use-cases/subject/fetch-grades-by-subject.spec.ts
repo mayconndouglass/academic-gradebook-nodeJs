@@ -3,7 +3,7 @@ import { expect, describe, it, beforeEach } from "vitest"
 import { RegisterSubjectUseCase } from "./register-subject"
 import { InMemorySubjectRepository } from "@/repositories/in-memory/in-memory-subjects-repository"
 import { RegisterGradeUseCase } from "../grade/register-grade"
-import { GradeRepository } from "@/repositories/grade-repository"
+import { GradeRepository } from "@/repositories/interfaces/grade-repository"
 import { InMemoryGradesRepository } from "@/repositories/in-memory/in-memory-grades-repository"
 import { FetchGradesBySubjectUseCase } from "./fetch-grades-by-subject"
 

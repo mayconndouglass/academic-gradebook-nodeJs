@@ -1,6 +1,6 @@
 import { Subject, Prisma } from "@prisma/client"
-import { SubjectRepository } from "../subject-repository"
 import { randomUUID } from "crypto"
+import { SubjectRepository } from "../interfaces/subject-repository"
 
 export class InMemorySubjectRepository implements SubjectRepository {
   public items: Subject[] = []
@@ -31,11 +31,12 @@ export class InMemorySubjectRepository implements SubjectRepository {
     this.items.splice(subject, 1)
   }
 
-  async updateName(id: string, name: string): Promise<Subject | null> {
+  async updateName(id: string, name: string): Promise<Subject> {
     const subject = this.items.find(item => item.id === id)
 
     if (!subject) {
-      return null
+      throw console.error("Erro")
+
     }
 
     subject.name = name

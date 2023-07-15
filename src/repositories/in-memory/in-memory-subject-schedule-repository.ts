@@ -1,5 +1,5 @@
 import { SubjectSchedule } from "@prisma/client"
-import { SubjectScheduleRepository } from "../subject-schedule-repository"
+import { SubjectScheduleRepository } from "../interfaces/subject-schedule-repository"
 import { randomUUID } from "crypto"
 
 export class InMemorySubjectSchedule implements SubjectScheduleRepository {
