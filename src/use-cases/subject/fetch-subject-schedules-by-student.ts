@@ -1,4 +1,4 @@
-import { SubjectRepository } from "@/repositories/subject-repository"
+import { SubjectRepository } from "@/repositories/interfaces/subject-repository"
 
 interface FetchSubjectScheduleByStudentUseCaseRequest {
   studentId: string
@@ -16,7 +16,8 @@ export class FetchSubjectScheduleByStudentUseCase {
   async execute({
     studentId
   }: FetchSubjectScheduleByStudentUseCaseRequest) {
-    const subjects = await this.subjectRepository.findManySubjectsWithSubjectScheduleByStudent(studentId)
+    const subjects = await this.subjectRepository.
+      findManySubjectsWithSubjectScheduleByStudent(studentId)
 
     return {
       subjects

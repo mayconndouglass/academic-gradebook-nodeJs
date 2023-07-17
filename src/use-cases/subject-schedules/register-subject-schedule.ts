@@ -1,4 +1,4 @@
-import { SubjectScheduleRepository } from "@/repositories/subject-schedule-repository"
+import { SubjectScheduleRepository } from "@/repositories/interfaces/subject-schedule-repository"
 import { SubjectSchedule } from "@prisma/client"
 
 interface RegisterSubjectScheduleUseCaseRequest {
