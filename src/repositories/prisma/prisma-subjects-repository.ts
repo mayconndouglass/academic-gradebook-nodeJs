@@ -68,6 +68,8 @@ export class PrismaSubjectsRepository implements SubjectRepository {
         student_id: studentId
       },
       include: {
+        Grades: true,
+        Absences: true,
         SubjectSchedule: true
       }
     })
