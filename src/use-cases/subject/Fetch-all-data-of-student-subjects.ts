@@ -1,7 +1,6 @@
 import { SubjectRepository } from "@/repositories/interfaces/subject-repository"
 import { Subject } from "@prisma/client"
 
-//TODO: Sem teste unitario
 interface FetchAllDataOfStudentSubjectsUseCaseRequest {
   studentId: string
 }
@@ -9,7 +8,6 @@ interface FetchAllDataOfStudentSubjectsUseCaseRequest {
 interface FetchAllDataOfStudentSubjectsUseCaseResponse {
   subjects: Subject[]
 }
-
 
 export class FetchAllDataOfStudentSubjectsUseCase {
   private subjectRepository: SubjectRepository
@@ -22,7 +20,7 @@ export class FetchAllDataOfStudentSubjectsUseCase {
     : Promise<FetchAllDataOfStudentSubjectsUseCaseResponse> {
 
     const subjects = await this.subjectRepository.
-      findManySubjectsWithSubjectScheduleByStudent(studentId)
+      findAllDatafromSubject(studentId)
 
     return {
       subjects

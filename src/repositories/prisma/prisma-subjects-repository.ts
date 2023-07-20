@@ -3,7 +3,35 @@ import { SubjectRepository } from "../interfaces/subject-repository"
 import { prisma } from "@/lib/prisma"
 
 export class PrismaSubjectsRepository implements SubjectRepository {
-  findByName(studentId: string, name: string): Promise<Subject | null> {
+  async findManySubjectsWithSubjectScheduleByStudent(studentId: string): Promise<Subject[]> {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        student_id: studentId
+      },
+      include: {
+        SubjectSchedule: true
+      }
+    })
+
+    return subjects
+  }
+
+  async findAllDatafromSubject(studentId: string): Promise<Subject[]> {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        student_id: studentId
+      },
+      include: {
+        Grades: true,
+        Absences: true,
+        SubjectSchedule: true
+      }
+    })
+
+    return subjects
+  }
+
+  async findByName(studentId: string, name: string): Promise<Subject | null> {
     const subject = prisma.subject.findFirst({
       where: {
         student_id: studentId,
@@ -60,20 +88,5 @@ export class PrismaSubjectsRepository implements SubjectRepository {
         id
       }
     })
-  }
-
-  async findManySubjectsWithSubjectScheduleByStudent(studentId: string): Promise<Subject[]> {
-    const subjects = await prisma.subject.findMany({
-      where: {
-        student_id: studentId
-      },
-      include: {
-        Grades: true,
-        Absences: true,
-        SubjectSchedule: true
-      }
-    })
-
-    return subjects
   }
 }

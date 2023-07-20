@@ -4,8 +4,6 @@ interface FetchSubjectScheduleByStudentUseCaseRequest {
   studentId: string
 }
 
-//TODO: Pode ser necessário retrabalhar essa idea
-//TODO: Não foi criado testes
 export class FetchSubjectScheduleByStudentUseCase {
   private subjectRepository: SubjectRepository
 
@@ -24,4 +22,3 @@ export class FetchSubjectScheduleByStudentUseCase {
     }
   }
 }
-

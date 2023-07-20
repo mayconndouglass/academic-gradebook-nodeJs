@@ -7,5 +7,6 @@ export interface SubjectRepository {
   findById(id: string): Promise<Subject | null>
   updateName(id: string, name: string): Promise<Subject>
   delete(id: string): Promise<void | null>
-  findManySubjectsWithSubjectScheduleByStudent(subjectId: string): Promise<Subject[]>
+  findManySubjectsWithSubjectScheduleByStudent(studentId: string): Promise<Subject[]>
+  findAllDatafromSubject(studentId: string): Promise<Subject[]>
 }

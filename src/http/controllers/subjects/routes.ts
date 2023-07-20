@@ -6,6 +6,7 @@ import { removeSubject } from "./remove-subject"
 import { fetchStudentsSubject } from "./fetch-students-subject"
 import { fetchGradesBySuject } from "./fetch-grades-by-subject"
 import { fetchAllDataOfStudentSubjects } from "./fetch-all-data-of-student-subject"
+import { fetchSubjectScheduleByStudent } from "./fetch-subject-schedule-by-student"
 
 export const subjectsRoutes = async (app: FastifyInstance) => {
   app.addHook("onRequest", verifyJwt)
@@ -16,4 +17,5 @@ export const subjectsRoutes = async (app: FastifyInstance) => {
   app.get("/subjects/students", fetchStudentsSubject)
   app.get("/subjects/grades", fetchGradesBySuject)
   app.get("/subjects/allData", fetchAllDataOfStudentSubjects)
+  app.get("/subjects/subject-schedule", fetchSubjectScheduleByStudent)
 }
