@@ -21,19 +21,19 @@ describe("Update subject name Use Case", () => {
       student_id: "studentTeste",
     })
 
-    updateSubjectNameUseCase.execute({
-      subjectId: subject.id,
+    const { subject: subjectWithNameEdited } = await updateSubjectNameUseCase.execute({
+      id: subject.id,
       name: "newName",
     })
 
-    expect(subject).toEqual(
+    expect(subjectWithNameEdited).toEqual(
       expect.objectContaining({ name: "newName" })
     )
   })
 
   it("should return an error if the subject is not found", async () => {
     await expect(() => updateSubjectNameUseCase.execute({
-      subjectId: "non-existent subject",
+      id: "non-existent subject",
       name: "newName",
     })).rejects.toBeInstanceOf(ResourceNotFoundError)
   })

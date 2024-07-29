@@ -23,16 +23,14 @@ export class UpdateSubjectNameUseCase {
     name,
   }: UpdateSubjectNameUseCaseRequest):
     Promise<UpdateSubjectNameUseCaseResponse> {
-    const subject = await this.subjectRepository.findById(id)
+    let subject = await this.subjectRepository.findById(id)
 
     if (!subject) {
       throw new ResourceNotFoundError()
     }
 
-    await this.subjectRepository.updateName(id, name)
+    subject = await this.subjectRepository.updateName(id, name)
 
-    return {
-      subject
-    }
+    return { subject }
   }
 }
