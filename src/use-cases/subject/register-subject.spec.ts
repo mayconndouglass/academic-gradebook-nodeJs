@@ -13,7 +13,7 @@ describe("Register Subject Use Case", () => {
   })
 
   it("should not be able to register two subjects with the same name", async () => {
-    const name = "Astrologia"
+    const name = "Astronomia"
 
     await registerSubjectUseCase.execute({
       name,
@@ -26,7 +26,7 @@ describe("Register Subject Use Case", () => {
       name,
       teacher_name: "Sergio Sacani",
       hours: 90,
-      student_id: "123456",
+      student_id: "12345",
     })).rejects.toBeInstanceOf(SubjectAlreadyExistsError)
   })
 

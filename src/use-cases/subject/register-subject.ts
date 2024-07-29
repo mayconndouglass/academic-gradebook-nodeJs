@@ -26,8 +26,6 @@ export class RegisterSubjectUseCase {
     hours,
     student_id
   }: RegisterSubjectUseCaseRequest): Promise<RegisterSubjectUseCaseResponse> {
-    //TODO: Será que deveria verificar se o student existe ?
-
     const subjectWithSameName = await this.subjectRepository.findByName(student_id, name)
 
     if (subjectWithSameName) {
