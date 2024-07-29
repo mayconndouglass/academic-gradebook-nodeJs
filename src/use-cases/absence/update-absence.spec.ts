@@ -21,7 +21,7 @@ describe("Update absence Use Case", () => {
 
     updateAbsenceUseCase.execute({
       absenceId: absence.id,
-      number_absence: 14
+      numberAbsence: 14
     })
 
     expect(absence).toEqual(
@@ -32,7 +32,7 @@ describe("Update absence Use Case", () => {
   it("should return an error if the absence is not found", async () => {
     await expect(() => updateAbsenceUseCase.execute({
       absenceId: "non-existent subject",
-      number_absence: 10,
+      numberAbsence: 10,
     })).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
