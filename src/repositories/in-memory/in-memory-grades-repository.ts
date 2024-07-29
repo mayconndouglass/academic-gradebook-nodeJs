@@ -1,5 +1,5 @@
 import { Prisma, Grade } from "@prisma/client"
-import { GradeRepository } from "../grade-repository"
+import { GradeRepository } from "../interfaces/grade-repository"
 import { randomUUID } from "crypto"
 
 export class InMemoryGradesRepository implements GradeRepository {

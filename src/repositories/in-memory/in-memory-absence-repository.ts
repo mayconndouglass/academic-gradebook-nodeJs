@@ -5,6 +5,16 @@ import { randomUUID } from "crypto"
 export class InMemoryAbsenceRepository implements AbsenceRepository {
   public items: Absence[] = []
 
+  async findAbsenceByStudentId(subjectId: string): Promise<Absence | null> {
+    const absence = this.items.find(item => item.id === subjectId)
+
+    if (!absence) {
+      return null
+    }
+
+    return absence
+  }
+
   async update(id: string, number_absences: number): Promise<Absence | null> {
     const absence = this.items.find(item => item.id === id)
 

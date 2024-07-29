@@ -1,5 +1,5 @@
 import { Student, Prisma } from "@prisma/client"
-import { StudentsRepository } from "../student-respository"
+import { StudentsRepository } from "../interfaces/student-respository"
 
 export class InMemoryStudentsRepository implements StudentsRepository {
   public items: Student[] = []

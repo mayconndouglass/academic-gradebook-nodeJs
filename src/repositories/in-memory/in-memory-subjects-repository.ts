@@ -5,12 +5,6 @@ import { SubjectRepository } from "../interfaces/subject-repository"
 export class InMemorySubjectRepository implements SubjectRepository {
   public items: Subject[] = []
 
-  async findManySubjectsWithSubjectScheduleByStudent(studentId: string)
-    : Promise<Subject[]> {
-    console.log(studentId)
-    throw new Error("Method not implemented.")
-  }
-
   async findById(id: string): Promise<Subject | null> {
     const subject = this.items.find(item => item.id === id)
 
@@ -36,7 +30,6 @@ export class InMemorySubjectRepository implements SubjectRepository {
 
     if (!subject) {
       throw console.error("Erro")
-
     }
 
     subject.name = name
@@ -50,7 +43,7 @@ export class InMemorySubjectRepository implements SubjectRepository {
     return subjects
   }
 
-  async findByName(name: string): Promise<Subject | null> {
+  async findByName(student_id: string, name: string): Promise<Subject | null> {
     const subject = this.items.find(item => item.name === name)
 
     if (!subject) {
@@ -72,5 +65,16 @@ export class InMemorySubjectRepository implements SubjectRepository {
     this.items.push(subject as Subject)
 
     return subject as Subject
+  }
+
+  async findAllDatafromSubject(studentId: string): Promise<Subject[]> {
+    console.log(studentId)
+    throw new Error("Method not implemented.")
+  }
+
+  async findManySubjectsWithSubjectScheduleByStudent(studentId: string)
+    : Promise<Subject[]> {
+    console.log(studentId)
+    throw new Error("Method not implemented.")
   }
 }
